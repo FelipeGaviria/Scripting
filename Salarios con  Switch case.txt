@@ -1,0 +1,51 @@
+﻿using System;
+using System.ComponentModel.Design;
+
+namespace Cálc_deduc_salariales_con_switch_case
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Ingrese su salario actual: ");
+            int salario = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Ingrese su tipo de contrato (1 = Independiente // 2 = Dependiente): ");
+            int tipoCon = int.Parse(Console.ReadLine());
+
+            double arl = 0, pensi = 0, eps = 0; //Datos para los cálculos luego
+            int bonific = 0, smmlv = 877803; //Datos para los cálculos luego
+
+            double baseCot = salario * 0.4;
+            if (baseCot < smmlv) baseCot = smmlv;
+
+            if (tipoCon == 1) //Si es independiente
+            {
+                Console.WriteLine("Ingrese un número de 1 a 5 que corresponda a su clase de riesgo: ");
+                int riesg = int.Parse(Console.ReadLine());
+
+                if (riesg == 1) arl = baseCot * 0.00522;
+                else if (riesg == 2) arl = baseCot * 0.01044;
+                else if (riesg == 3) arl = baseCot * 0.02436;
+                else if (riesg == 4) arl = baseCot * 0.04350;
+                else arl = baseCot * 0.06960;
+
+                pensi = baseCot * 0.16;
+                eps = baseCot * 0.125;
+            }
+
+            else //Si es dependiente
+            {
+                pensi = baseCot * 0.04;
+                eps = baseCot * 0.04;
+
+                bonific = salario;
+            }
+
+            int salReal = salario - (int)(pensi + eps + arl);
+            int salAnual = salReal * 12 + bonific;
+
+            Console.WriteLine("Salario real: " + salReal + " / Salario anual: " + salAnual);
+        }
+    }
+}
