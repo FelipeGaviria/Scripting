@@ -1,51 +1,61 @@
-﻿using System;
-using System.ComponentModel.Design;
-
-namespace Cálc_deduc_salariales_con_switch_case
+using System;
+namespace Salario_con_switch_case
 {
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Ingrese su salario actual: ");
-            int salario = int.Parse(Console.ReadLine());
+            double salario = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Ingrese su tipo de contrato (1 = Independiente // 2 = Dependiente): ");
-            int tipoCon = int.Parse(Console.ReadLine());
+            Console.WriteLine("Ingrese su tipo de contrato (Independiente // Dependiente): ");
+            string tipocon = Console.ReadLine();
+			
+			 Console.WriteLine("Ingrese un número de 1 a 5 que corresponda a su clase de riesgo: ");
+			double riesgo = double.Parse(Console.ReadLine());
 
-            double arl = 0, pensi = 0, eps = 0; //Datos para los cálculos luego
-            int bonific = 0, smmlv = 877803; //Datos para los cálculos luego
+            double smmlv = 877803;
+			double basecot = 0.4 * salario;
+			if (basecot < smmlv) basecot = smmlv;
+            switch (tipocon){
+            
+				case "dependiente":
+					double pension = basecot * 0.04;
+					double eps = basecot * 0.04;
+					double salReal = (salario - pension - eps);
+					double salAnual = (salReal * 12) + salario;
+					
+					Console.WriteLine("Salario real: " + salReal + " / Salario anual: " + salAnual);
+				break;
+				case "independiente":
+					 Console.WriteLine("Ingrese un número de 1 a 5 que corresponda a su clase de riesgo: ");
+					double pensionInd = basecot * 0.16;
+					double epsInd = basecot * 0.125;
+					
+			switch (riesgo)
+			{
+				case 1: 
+					double arl1 = basecot * 0.00522;
+					break;
+				case 2: 
+					double arl2 = basecot * 0.01044;
+					break;
+				case 3: 
+					double arl3 = basecot * 0.02436;
+					break;
+				case 4: 
+					double arl4 = basecot * 0.0435;
+					break;
+				case 5:
+					double arl5 = basecot * 0.0696;
+					break;
+			}
+            double salRealInd = (salario - pensionInd - epsInd - riesgo);
+            double salAnualInd = salRealInd * 12;
 
-            double baseCot = salario * 0.4;
-            if (baseCot < smmlv) baseCot = smmlv;
-
-            if (tipoCon == 1) //Si es independiente
-            {
-                Console.WriteLine("Ingrese un número de 1 a 5 que corresponda a su clase de riesgo: ");
-                int riesg = int.Parse(Console.ReadLine());
-
-                if (riesg == 1) arl = baseCot * 0.00522;
-                else if (riesg == 2) arl = baseCot * 0.01044;
-                else if (riesg == 3) arl = baseCot * 0.02436;
-                else if (riesg == 4) arl = baseCot * 0.04350;
-                else arl = baseCot * 0.06960;
-
-                pensi = baseCot * 0.16;
-                eps = baseCot * 0.125;
-            }
-
-            else //Si es dependiente
-            {
-                pensi = baseCot * 0.04;
-                eps = baseCot * 0.04;
-
-                bonific = salario;
-            }
-
-            int salReal = salario - (int)(pensi + eps + arl);
-            int salAnual = salReal * 12 + bonific;
-
-            Console.WriteLine("Salario real: " + salReal + " / Salario anual: " + salAnual);
+            Console.WriteLine("Salario real: " + salRealInd + " / Salario anual: " + salAnualInd);
+		break;
         }
     }
+}
 }
