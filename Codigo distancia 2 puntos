@@ -1,0 +1,28 @@
+public class Program
+{
+	public static void Main()
+	{
+
+		Console.Write("x1: ");
+
+		double x1 = double.Parse(Console.ReadLine());
+
+		Console.Write("y1: ");
+
+		double y1 = double.Parse(Console.ReadLine());
+		Console.Write("x2: ");
+
+		double x2 = double.Parse(Console.ReadLine());
+
+		Console.Write("y2: ");
+
+		double y2 = double.Parse(Console.ReadLine());
+
+		double m = ((y2 - y1) / (x2 - x1));
+		double b = ((m * x1) - y1);
+		Console.WriteLine("m= "+m);
+		Console.WriteLine("b= " + b);
+		double distancia = Math.Sqrt((Math.Pow(x2 - x1,2)) + ((y2 - y1) * (y2 - y1)));
+		Console.WriteLine("distancia= " + distancia);
+	}
+}
