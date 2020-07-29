@@ -1,34 +1,40 @@
 using System;
 
-namespace Fórmula_cuadrática
-{
-    class Program
+//namespace Fórmula_cuadrática
+//{
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
 
-            Console.WriteLine("Ingresa x1: ");
-            double x1 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Ingresa a: ");
+            double a = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Ingresa y1: ");
-            double y1 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Ingresa b: ");
+            double b = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Ingresa x2: ");
-            double x2 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Ingresa c: ");
+            double c = double.Parse(Console.ReadLine());
 
-            Console.WriteLine("Ingresa y2: ");
-            double y2 = double.Parse(Console.ReadLine());
+            double discriminante = ((b * b) - 4 * a * c);
 
 
-            double m = ((y2 - y1) / (x2 - x1));
-
-            double b = (y1 - (m * x1));
-
-            double distancia = Math.Sqrt(((x2 - x1) * (x2 - x1)) - ((y2 - y1) * (y2 - y1)));
-
-            Console.writeLine("M= " +m );
-            Console.writeLine("b= " + b);
-            Console.writeLine("distancia= " + distancia);
+            if (discriminante == 0)
+            {
+                double discrimCero = -b / (a * 2);
+                Console.WriteLine("Tiene solucion única: " + discrimCero);
+            }
+            else if (discriminante > 0)
+            {
+                double formuCua = (-b + Math.Sqrt(discriminante)) / (a * 2);
+                double formuNeg = (-b - Math.Sqrt(discriminante)) / (a * 2);
+                Console.WriteLine("tiene dos soluciones. X1: " + formuCua);
+                Console.WriteLine("X2: " + formuNeg);
+            }
+            else
+            {
+                Console.WriteLine("No tiene solución.");
+            }
         }
     }
-}
+//}
