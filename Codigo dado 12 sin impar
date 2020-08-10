@@ -1,0 +1,66 @@
+using System;
+
+public class Program
+    {
+       public static void Main(string[] args)
+        {
+            Random aleatorio = new Random();
+            int conturn = 0;
+            int dado = 0;
+            int total = 0;
+
+            int cont10 = 2;
+
+            while (100 > total)
+            {
+                if (total > 100 || cont10 == 0)
+                {
+                    Console.WriteLine(" ganaste ");
+                    break;
+                }
+
+                Console.WriteLine("¿Deseas continuar?");
+                string continuar = Console.ReadLine();
+
+                if (continuar == "s")
+                {
+                    dado = aleatorio.Next(1, 12);
+                    total += (dado);
+                    conturn++;
+                    Console.WriteLine(" Sacas= " + dado);
+                    Console.WriteLine(" Total= " + total);
+                }
+                else if (continuar == "n")
+                {
+                Console.WriteLine("Perdiste");
+                    break;
+                }
+
+                if(dado == 12 && cont10 == 2)
+                {
+                    cont10--;
+                }
+                else if (dado == 10 && cont10 == 1 )
+                {
+                  cont10--;   
+                }
+                else
+                {
+                    cont10 = 2 ;
+                }
+                if (conturn > 3)
+                {
+                    if ((dado % 2) == 0)
+                    {
+                         total += (dado);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Perdiste");  
+                        break;
+                    }
+                }
+            }
+        Console.WriteLine(" total: " + total);
+        }
+}
