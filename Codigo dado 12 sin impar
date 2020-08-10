@@ -13,26 +13,20 @@ public class Program
 
             while (100 > total)
             {
-                if (total > 100 || cont10 == 0)
-                {
-                    Console.WriteLine(" ganaste ");
-                    break;
-                }
-
                 Console.WriteLine("¿Deseas continuar?");
                 string continuar = Console.ReadLine();
 
                 if (continuar == "s")
                 {
-                    dado = aleatorio.Next(1, 12);
+                    dado = aleatorio.Next(1, 13);
                     total += (dado);
                     conturn++;
                     Console.WriteLine(" Sacas= " + dado);
                     Console.WriteLine(" Total= " + total);
                 }
-                else if (continuar == "n")
+                else if (continuar != "s")
                 {
-                Console.WriteLine("Perdiste");
+                Console.WriteLine("Te retiraste");
                     break;
                 }
 
@@ -59,6 +53,11 @@ public class Program
                         Console.WriteLine("Perdiste");  
                         break;
                     }
+                }
+				if (total > 100 || cont10 == 0)
+                {
+                    Console.WriteLine(" ganaste ");
+                    break;
                 }
             }
         Console.WriteLine(" total: " + total);
