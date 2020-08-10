@@ -1,65 +1,96 @@
 using System;
-
-
+					
 public class Program
 {
     public static void Main()
     {
-    Random aleatorio = new Random();  
-    int dado1 = 0;
-    int dado2 = 0;
-        
-        int total = (dado1 + dado2);
+        Random aleatorio = new Random();
+        int dado1 = 0;
+        int dado12 = 0;
+
+        int total = (dado1);
 
         int cont = 0;
         int cont6 = 0;
-        int contdob = 3;
+        int cont1 = 0;
+        int contdado12 = 2;
+        int contvida = 3;
 
         string continuar = "s";
-
+			
         while (continuar == "s")
         {
             dado1 = aleatorio.Next(1, 6);
-            dado2 = aleatorio.Next(1, 6);
-            total += (dado1 + dado2);
-
-            Console.Write(" dado1: " + dado1);
-            Console.Write(" dado1: " + dado2);
-            Console.Write(" total: " + total);
-
-            if (dado1 + dado2 > 6) cont6++;
-
-            if (dado1 == dado2)
+            dado12 = aleatorio.Next(1, 12);
+            if (contdado12 > 0)
             {
-                contdob--;
+                Console.WriteLine(" Usar dado de 12 caras?");
+                string dadodocec = Console.ReadLine();
+                if (dadodocec == "s")
+                {
+					Console.WriteLine(" Sacas: " + dado12);
+                    total += dado12;
+                    contdado12--;
+                    Console.WriteLine(" Usaste dado de 12, restan: " + contdado12);
+                }
+                else total += dado1;
             }
-            else
+            else if(contdado12 == 0) total += (dado1);
+
+            //Console.WriteLine(" total: " + total);
+
+            if (dado1 == 1 )
             {
-                contdob = 3;
+                cont1++;
+                if(cont1 > 1) 
+                {
+                    total = total - 10;
+                    contvida--;
+                    Console.WriteLine(" Perdiste una vida (-10pts) ");
+                    cont1 = 0;
+                }  
             }
 
-            if (dado1 == 1 && dado2 == 1){
-
+            if (dado1 == 6)
+            {
+                cont6++;
+                if (cont6 > 1 && contvida < 3)
+                {
+                    contvida++;
+                    Console.WriteLine(" Recuperas una vida ");
+                    cont6 = 0;
+                }
+				 if (total <= 0 )
+            {
                 total = 0;
+            }
+            }
+			 if (contvida == 0 )
+            {
                 Console.Write(" Perdiste ");
                 break;
             }
-            else if (total >= 100 || contdob ==0)
+            if (contvida == 0 )
             {
-                Console.Write(" Ganaste ");
-                Console.Write(" Total " + total);
+                Console.Write(" Perdiste ");
                 break;
             }
-            else 
+
+            else if (total >= 100)
             {
-                Console.Write(" ¿Deseas Continuar? ");
-                Console.Write(" Total " + total);
+                Console.WriteLine(" Ganaste ");
+                Console.WriteLine(" Total " + total);
+                break;
+            }
+            else
+            {
+				Console.WriteLine(" Sacas: " + dado1);
+                Console.WriteLine(" Total " + total);
+				Console.WriteLine(" ¿Deseas Continuar? ");
                 continuar = Console.ReadLine();
             }
-
+			Console.WriteLine(" Tus vidas son: " + contvida);
             cont++;
         }
-        double prc = ((double)cont6 / cont) * 100;
-        Console.Write(" Porcentaje de 6 " + prc + "%");
     }
 }
