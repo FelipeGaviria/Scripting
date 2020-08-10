@@ -1,5 +1,7 @@
 using System;
 					
+using System;
+					
 public class Program
 {
     public static void Main()
@@ -33,10 +35,17 @@ public class Program
                     contdado12--;
                     Console.WriteLine(" Usaste dado de 12, restan: " + contdado12);
                 }
-                else total += dado1;
+                else 
+				{
+					total += dado1;
+				 	Console.WriteLine(" Sacas: " + dado1);
+				}
             }
-            else if(contdado12 == 0) total += (dado1);
-
+            else if(contdado12 == 0) 
+			{
+				total += (dado1);
+				Console.WriteLine(" Sacas: " + dado1);
+			}
             //Console.WriteLine(" total: " + total);
 
             if (dado1 == 1 )
@@ -76,7 +85,7 @@ public class Program
                 break;
             }
 
-            else if (total >= 100)
+            if (total >= 100)
             {
                 Console.WriteLine(" Ganaste ");
                 Console.WriteLine(" Total " + total);
@@ -84,7 +93,6 @@ public class Program
             }
             else
             {
-				Console.WriteLine(" Sacas: " + dado1);
                 Console.WriteLine(" Total " + total);
 				Console.WriteLine(" ¿Deseas Continuar? ");
                 continuar = Console.ReadLine();
