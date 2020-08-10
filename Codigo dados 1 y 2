@@ -1,0 +1,65 @@
+using System;
+
+
+public class Program
+{
+    public static void Main()
+    {
+    Random aleatorio = new Random();  
+    int dado1 = 0;
+    int dado2 = 0;
+        
+        int total = (dado1 + dado2);
+
+        int cont = 0;
+        int cont6 = 0;
+        int contdob = 3;
+
+        string continuar = "s";
+
+        while (continuar == "s")
+        {
+            dado1 = aleatorio.Next(1, 6);
+            dado2 = aleatorio.Next(1, 6);
+            total += (dado1 + dado2);
+
+            Console.Write(" dado1: " + dado1);
+            Console.Write(" dado1: " + dado2);
+            Console.Write(" total: " + total);
+
+            if (dado1 + dado2 > 6) cont6++;
+
+            if (dado1 == dado2)
+            {
+                contdob--;
+            }
+            else
+            {
+                contdob = 3;
+            }
+
+            if (dado1 == 1 && dado2 == 1){
+
+                total = 0;
+                Console.Write(" Perdiste ");
+                break;
+            }
+            else if (total >= 100 || contdob ==0)
+            {
+                Console.Write(" Ganaste ");
+                Console.Write(" Total " + total);
+                break;
+            }
+            else 
+            {
+                Console.Write(" ¿Deseas Continuar? ");
+                Console.Write(" Total " + total);
+                continuar = Console.ReadLine();
+            }
+
+            cont++;
+        }
+        double prc = ((double)cont6 / cont) * 100;
+        Console.Write(" Porcentaje de 6 " + prc + "%");
+    }
+}
