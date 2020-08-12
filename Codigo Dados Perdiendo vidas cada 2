@@ -1,0 +1,66 @@
+using System;
+					
+public class Program
+{
+    public static void Main()
+    {
+        Random aleatorio = new Random();
+        int dado1 = 0;
+        int dado2 = 0;
+
+        int total = (dado1);
+
+        int conturn = 0;
+        int contvida = 3;
+
+        while (100 > total)
+            {
+                Console.WriteLine("¿Deseas continuar?");
+                string continuar = Console.ReadLine();
+
+                if (continuar == "s")
+                {
+                    dado1 = aleatorio.Next(1, 7);
+					dado2 = aleatorio.Next(1, 7);
+                    total += (dado1);
+                    conturn++;
+                    Console.WriteLine(" Sacas= " + dado1);
+                    //Console.WriteLine(" Total= " + total);
+                }
+                else if (continuar != "s")
+                {
+                Console.WriteLine("Te retiraste");
+                    break;
+                }
+			if ((conturn % 3) == 0)
+			{
+				total += (dado1 + dado2);
+				Console.WriteLine(" Dado2= " + dado2);
+				if (dado1 == dado2)
+				{
+					contvida++;
+					Console.WriteLine("Recuperas una vida");
+				}
+			}
+			else if ((conturn % 2) == 0)
+			{
+					contvida--;
+					Console.WriteLine("Pierdes una vida");
+            }
+			if (contvida == 0){
+
+                Console.WriteLine(" Perdiste ");
+				Console.WriteLine(" Puntaje final: " + total);
+                break;
+			}
+			if (total > 100)
+                {
+                    Console.WriteLine(" Ganaste ");
+					Console.WriteLine(" Puntaje final: " + total);
+                    break;
+                }
+		Console.WriteLine(" total: " + total);
+		Console.WriteLine(" Tus vidas son= " + contvida);
+		}
+    }
+}
