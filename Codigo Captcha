@@ -1,0 +1,33 @@
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+		Random aleatorio = new Random();
+		int a = aleatorio.Next(0, 11);
+		int b = aleatorio.Next(0, 11);
+		int sumaCorrecta = (a + b);
+		int conterror = 2;
+		Console.WriteLine(" a= " + a);
+		Console.WriteLine(" b= " + b);
+		Console.WriteLine("Ingresa Resultado: a + b");
+		int suma = int.Parse(Console.ReadLine());
+
+		while (sumaCorrecta != suma)
+		{
+			Console.WriteLine("Error");
+			Console.WriteLine("Intentos permitidos: " + conterror);
+			//conterror--;
+			suma = int.Parse(Console.ReadLine());
+			conterror--;
+
+			if (conterror == 0)
+			{
+				Console.WriteLine("Validacion Incorrecta, no puedes continuar");
+				break;
+			}
+		}
+		Console.WriteLine("Puedes continuar");
+	}
+}
