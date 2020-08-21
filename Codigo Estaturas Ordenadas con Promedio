@@ -1,0 +1,61 @@
+using System;
+
+namespace Codigo_ArregloDatos
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] nombres = { "Nezuko", "Tanjiro", "Zenitsu", "Inosuke", "Genya", "Kanao", "Tomioka" };
+            double[] estatura = { 153, 165, 164.5, 164, 180, 156, 176 };
+            double Total = 0;
+
+
+            for (int j = 0; j< estatura.Length; j++)
+            {
+                for (int i = 0; i < estatura.Length - 1; i++)
+                {
+                    if (estatura[i] > estatura[i + 1])
+                    {
+                        double tmp = estatura[i];
+                        estatura[i] = estatura[i + 1];
+                        estatura[i + 1] = tmp;
+
+                        string tmpN = nombres[i];
+                        nombres[i] = nombres[i + 1];
+                        nombres[i + 1] = tmpN;
+                    }
+                }
+            }
+
+            for (int i = 0; i < estatura.Length; i++)
+            {
+                Console.WriteLine(nombres[i] + " " + estatura[i]);
+                Total += estatura[i];
+            }
+            
+            double promedio = Total / 7;
+            Console.WriteLine("Promedio: " + promedio);
+
+            double[] distancia = new double[estatura.Length];
+
+            double cercano = 0;
+
+            int indice = 0;
+
+            for (int i = 0; i < estatura.Length; i++)
+            {
+                distancia[i] = Math.Abs(promedio - estatura[i]);
+                Console.WriteLine("Distancia: " + i );
+                Console.WriteLine(distancia[i]);
+
+                if (estatura[i] < promedio && promedio > cercano && cercano < estatura[i])
+                {
+                    cercano = estatura[i];
+                    indice = i;
+                }
+            }
+            Console.WriteLine("El mas cercano al promedio es " + nombres[indice] + ", con un valor de: " + cercano);
+        }
+    }
+}
