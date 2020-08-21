@@ -1,0 +1,122 @@
+using System;
+
+namespace Codigo_21_Con_Jugadores_Ordenados
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random aleatorio = new Random();
+            int carta1 = 0;
+            int carta2 = 0;
+            int total = carta1 + carta2;
+            string continuar;
+
+
+            Console.Write("Inserte el número de jugadores (mín 2) ");
+            int n = int.Parse(Console.ReadLine());
+
+            int jugador = n;
+
+            string[] nombres = new string[n];
+            int[] puntajes = new int[n];
+
+            for (int i = 0; n != 0; i++)
+            {
+                n -= 1;
+
+                Console.WriteLine("Ingrese su Nombre");
+                string playername = Console.ReadLine();
+                nombres[i] = playername;
+
+                //Codigo 21
+
+                carta1 = aleatorio.Next(1, 11);
+                carta2 = aleatorio.Next(1, 12);
+                total = carta1 + carta2;
+                Console.WriteLine("Carta 1 = " + carta1);
+                Console.WriteLine("Carta 2 = " + carta2);
+                Console.WriteLine("Total = " + total);
+                Console.WriteLine("¿Desea continuar? (s/n): ");
+                continuar = (Console.ReadLine());
+
+                while (continuar == "s")
+                {
+                    int baraja = aleatorio.Next(1, 11);
+                    total += baraja;
+                    Console.WriteLine("Carta extra = " + baraja);
+                    Console.WriteLine("Total = " + total);
+
+                    if (total < 21)
+                    {
+                        Console.WriteLine("¿Desea continuar? (s/n): ");
+                        continuar = (Console.ReadLine());
+                        while (continuar != "n" && continuar != "s")
+                        {
+                            Console.WriteLine("(s/n) Cuidar Mayusculas");
+                            continuar = (Console.ReadLine());
+                        }
+                    }
+                    else if (total == 21)
+                    {
+                        Console.WriteLine("Ganaste!");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Perdiste");
+                        break;
+                    }
+
+                }
+                //Asignar i al total
+                Console.WriteLine("Puntaje Final = " + total);
+               // total = 0;
+                puntajes[i] = total;
+            }
+
+            for (int j = 0; j < jugador; j++)
+            {
+                for (int i = 0; i < jugador - 1; i++)
+                {
+                    if (puntajes[i] > puntajes[i + 1])
+                    {
+                        int tmp = puntajes[i];
+                        puntajes[i] = puntajes[i + 1];
+                        puntajes[i + 1] = tmp;
+
+                        string tmpN = nombres[i];
+                        nombres[i] = nombres[i + 1];
+                        nombres[i + 1] = tmpN;
+                    }
+                }
+            }
+
+            Console.WriteLine("Fin del juego");
+
+          //int first = 0;
+          //int indice = 0;
+
+            //for (int i = 0; n != 0; i++)
+            //{
+              //  if (puntajes[i] < 21 && 21 > 21 && first < puntajes[i])
+               // {
+                 //   first = puntajes[i];
+                   // indice = i;
+                //}
+            //}
+            //Console.WriteLine("Ganador es " + nombres[indice] + ", con un valor de: " + first);
+
+
+
+            if (puntajes[jugador - 1] == 0) Console.WriteLine("No hay ganador");
+            {
+             Console.WriteLine("El ganador es " + nombres[jugador - 1]);
+             Console.WriteLine("Puntaje = " + puntajes[jugador - 1]);
+
+             Console.WriteLine("El segundo lugar es " + nombres[jugador - 2]);
+             Console.WriteLine("Puntaje = " + puntajes[jugador - 2]);
+            }
+        }
+    }
+}
