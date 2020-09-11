@@ -1,0 +1,81 @@
+using System;
+
+namespace Matrices_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random random = new Random();
+            string[] valores = { "-", "-" };
+            int n = 10;
+            int m = 15;
+
+            string[,] tablero = new string[n, m];
+            string[,] salida = new string[n, m];
+            for (int i = 0; i < tablero.GetLength(0); i++)
+            {
+                for (int j = 0; j < tablero.GetLength(1); j++)
+                {
+                    int indice = random.Next(0, valores.Length);
+                    tablero[i, j] = valores[indice];
+                    salida[i, j] = "-";
+                }
+            }
+            Console.WriteLine("ENTRADA:  ");
+            for (int i = 0; i < tablero.GetLength(0); i++)
+            {
+                for (int j = 0; j < tablero.GetLength(1); j++)
+                {
+                    Console.Write("|" + tablero[i, j]);
+                }
+                Console.Write("|\n");
+            }
+
+            while (tablero[n - 1, m -1] == "-")
+            {
+
+                for (int i = 0; i <= tablero.GetLength(0); i++)
+                {
+                    for (int j = 0; j <= tablero.GetLength(1); j++)
+                    {
+                        /*
+                        Console.WriteLine("Ingrese el valor para {"+i+"},{"+j+"}: ", i, j);
+                        string input = Console.ReadLine();
+
+                        salida[i, j] = input;
+                        */
+
+                        
+                             Console.Write("\nIngrese una Coordenada ["+i+","+j+"] = ");
+                             tablero[i, j] = Console.ReadLine();
+                             if (tablero[i,j] == "-")
+                             {
+                                 salida[i, j] = "X";
+                            //break;
+                             }
+                             else
+                             {
+                                 Console.WriteLine("No puedes Poner aqui");
+                             }
+                          
+                    
+ 
+                    }
+                }
+                Console.WriteLine("\nSALIDA:  ");
+                for (int i = 0; i < tablero.GetLength(0); i++)
+                {
+                    for (int j = 0; j < tablero.GetLength(1); j++)
+                    {
+                        Console.Write("|" + salida[i, j]);
+                    }
+                    Console.Write("|\n");
+                }
+                Console.Write("\n");
+                //break;
+            }
+
+        }
+    }
+}
